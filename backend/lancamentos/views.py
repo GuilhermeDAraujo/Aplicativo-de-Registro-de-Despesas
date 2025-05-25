@@ -5,9 +5,16 @@ from rest_framework import status
 from .models import Lancamento
 from .serializers import LancamentoSerializer
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def lancamento_view(request):
     if request.method == 'GET':
         lancamento = Lancamento.objects.all()
         serializer = LancamentoSerializer(lancamento, many=True)
         return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        serializer = LancamentoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
