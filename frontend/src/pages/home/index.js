@@ -50,6 +50,20 @@ function Home() {
     buscarLancamentos()
   }
 
+  const filtrarLancamentos = async () => {
+    const nome = filtroNome.current.value;
+    const banco = filtroBanco.current.value;
+
+    const queryParams = new URLSearchParams();
+
+    if(nome) queryParams.append('nome', nome);
+    if(banco) queryParams.append('banco', banco);
+
+    const response = await fetch(`http://localhost:8000/lancamento/filtrar?${queryParams.toString()}`);
+    const data = await response.JSON();
+    setLancamentos(data);
+  }
+
   return (
     <div className='container'>
       <div className='from-wrapper'>
