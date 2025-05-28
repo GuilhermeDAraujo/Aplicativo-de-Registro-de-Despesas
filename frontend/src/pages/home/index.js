@@ -69,7 +69,7 @@ function Home() {
 
   return (
     <div className='container'>
-      <div className='from-wrapper'>
+      <div className='form-wrapper'>
         <form>
           <h1>Registrar Despesa</h1>
           <input placeholder='Nome' name='nome' type='text' ref={inputNome} />
@@ -102,8 +102,7 @@ function Home() {
         </div>
       ))}
     </div>
-  )
-
+  );
 }
 
 export default Home;
