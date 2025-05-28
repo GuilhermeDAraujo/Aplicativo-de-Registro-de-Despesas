@@ -43,6 +43,12 @@ function Home() {
     inputHistorico.current.value = '';
   }
 
+  const deletarLancamento = async (id) => {
+    await fetch(`http://localhost:8000/lancamento/lancamentos/${id}`, {
+      method: 'DELETE',
+    });
+    buscarLancamentos()
+  }
 
   return (
     <div className='container'>
@@ -67,7 +73,7 @@ function Home() {
               <p>Banco: <span>{item.banco}</span></p>
               <p>Histórico: <span>{item.historico}</span></p>
             </div>
-            <button>
+            <button onClick={() => deletarLancamento(item.id)}>
               <img src={Trash} className="img-lixeira" />
             </button>
           </div>
