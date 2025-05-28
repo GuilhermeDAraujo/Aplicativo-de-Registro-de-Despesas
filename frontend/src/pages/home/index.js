@@ -36,6 +36,7 @@ function Home() {
       },
       body: JSON.stringify(novoLancamento)
     });
+    buscarLancamentos()
     inputNome.current.value = '';
     inputBanco.current.value = '';
     inputValor.current.value = '';
