@@ -78,9 +78,9 @@ function Home() {
 
         <form>
           <h1>Pesquisar Registros</h1>
-          <input placeholder="Nome" name="nome" type="text"/>
-          <input placeholder="Banco" name="banco" type="text"/>
-          <button type='button'>Pesquisar</button>
+          <input placeholder="Nome" name="nome" type="text" ref={filtroNome}/>
+          <input placeholder="Banco" name="banco" type="text" ref={filtroBanco}/>
+          <button type='button' onClick={filtrarLancamentos}>Pesquisar</button>
         </form>
       </div>
 
