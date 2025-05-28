@@ -62,8 +62,12 @@ function Home() {
           <button type='button' onClick={registrarLancamento}>Registrar</button>
         </form>
 
-
-
+        <form>
+          <h1>Pesquisar Registros</h1>
+          <input placeholder="Nome" name="nome" type="text"/>
+          <input placeholder="Banco" name="banco" type="text"/>
+          <button type='button'>Pesquisar</button>
+        </form>
       </div>
 
       <h1>Despesas já registradas</h1>
