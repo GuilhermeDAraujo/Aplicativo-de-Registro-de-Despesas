@@ -36,9 +36,9 @@ def filtrar_lancamento(request):
     if nome or banco:
         filtros = {}
         if nome:
-            filtros['nome_icontains'] = nome
+            filtros['nome__icontains'] = nome
         if banco:
-            filtros['banco_icontains'] = banco
+            filtros['banco__icontains'] = banco
         lancamento = Lancamento.objects.filter(**filtros)
     else:
         lancamento = Lancamento.objects.all()

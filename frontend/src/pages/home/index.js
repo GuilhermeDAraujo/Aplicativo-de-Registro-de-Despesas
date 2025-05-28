@@ -10,6 +10,9 @@ function Home() {
   const inputBanco = useRef()
   const inputHistorico = useRef()
 
+  const filtroNome = useRef()
+  const filtroBanco = useRef()
+
   useEffect(() => {
     buscarLancamentos();
   }, [])
@@ -19,7 +22,7 @@ function Home() {
       .then(response => response.json())
       .then(data => setLancamentos(data))
       .catch(err => console.error('Erro ao buscar lançamentos:', err));
-  }
+  };
 
   const registrarLancamento = async () => {
     const novoLancamento = {
@@ -41,14 +44,14 @@ function Home() {
     inputBanco.current.value = '';
     inputValor.current.value = '';
     inputHistorico.current.value = '';
-  }
+  };
 
   const deletarLancamento = async (id) => {
     await fetch(`http://localhost:8000/lancamento/lancamentos/${id}`, {
       method: 'DELETE',
     });
     buscarLancamentos()
-  }
+  };
 
   const filtrarLancamentos = async () => {
     const nome = filtroNome.current.value;
@@ -60,9 +63,9 @@ function Home() {
     if(banco) queryParams.append('banco', banco);
 
     const response = await fetch(`http://localhost:8000/lancamento/filtrar?${queryParams.toString()}`);
-    const data = await response.JSON();
+    const data = await response.json();
     setLancamentos(data);
-  }
+  };
 
   return (
     <div className='container'>
