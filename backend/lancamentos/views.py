@@ -27,3 +27,21 @@ def deletar_lancamento(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     except Lancamento.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def filtrar_lancamento(request):
+    nome = request.query_params.get('nome')
+    banco = request.query_params.get('banco')
+
+    if nome or banco:
+        filtros = {}
+        if nome:
+            filtros['nome_icontains'] = nome
+        if banco:
+            filtros['banco_icontains'] = banco
+        lancamento = Lancamento.objects.filter(**filtros)
+    else:
+        lancamento = Lancamento.objects.all()
+    
+    serializer = LancamentoSerializer(lancamento, many=True)
+    return Response(serializer.data)

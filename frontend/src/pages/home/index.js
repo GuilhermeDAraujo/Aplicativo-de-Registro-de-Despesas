@@ -61,22 +61,23 @@ function Home() {
           <input placeholder='Histórico' name='historico' type='text' ref={inputHistorico} />
           <button type='button' onClick={registrarLancamento}>Registrar</button>
         </form>
+
+
+
       </div>
 
       <h1>Despesas já registradas</h1>
       {lancamentos.map(item => (
         <div key={item.id} className='card'>
           <div>
-            <div>
-              <p>Nome: <span>{item.nome}</span></p>
-              <p>Valor: <span>R${item.valor}</span></p>
-              <p>Banco: <span>{item.banco}</span></p>
-              <p>Histórico: <span>{item.historico}</span></p>
-            </div>
-            <button onClick={() => deletarLancamento(item.id)}>
-              <img src={Trash} className="img-lixeira" />
-            </button>
+            <p>Nome: <span>{item.nome}</span></p>
+            <p>Valor: <span>R${item.valor}</span></p>
+            <p>Banco: <span>{item.banco}</span></p>
+            <p>Histórico: <span>{item.historico}</span></p>
           </div>
+          <button onClick={() => deletarLancamento(item.id)}>
+            <img src={Trash} className="img-lixeira" />
+          </button>
         </div>
       ))}
     </div>
